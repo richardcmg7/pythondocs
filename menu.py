@@ -1,9 +1,10 @@
-#/usr/bin/python3
+# /usr/bin/python3
 
 class Menu:
-    
+
     def __init__(self):
         pass
+
     @property
     def list_options(self):
         command = '''

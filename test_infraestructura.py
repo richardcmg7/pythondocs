@@ -7,8 +7,9 @@ from main_menu import MainMenu
 # from talent_book import TalentBook
 from talents_admin import TalentsSelected
 
+
 def infraestructura(name, talents):
-    #Import template document
+    # Import template document
     template = DocxTemplate('infraestructura.docx')
     context = {
         'city': 'Neiva',
@@ -24,9 +25,10 @@ def infraestructura(name, talents):
     template.render(context)
     template.save('infraestructura_document.docx')
 
+
 def date_select():
-    date_select = input('Deseas usar la fecha actual? [S] o [N]: ')
-    if date_select == "S" or date_select == "s":
+    data = input('Deseas usar la fecha actual? [S] o [N]: ')
+    if data == "S" or data == "s":
         months = ("Enero", "Febrero", "Marzo", "Abri", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
         day = datetime.datetime.now().strftime('%d')
         month = months[int(datetime.datetime.now().month)-1]
@@ -49,6 +51,7 @@ def date_select():
     #     }
     # ]
 
+
 ## Start program
 if __name__ == "__main__":
     print('*********************************************')
@@ -57,33 +60,36 @@ if __name__ == "__main__":
     print('Selecciona los documentos que se quieren generar')
     while True:
         main = MainMenu()
-        command = main.list_options
+        print(main.list_options)
+        command = str(input(''))
+
+        if command == 's':
+            break
 
         if command == 'a':
             pass    
 
         if command == 'm':
             # Project Admin - Create Project instance
+            # Admin Project
+
             print('\nEsta bien... Ahora generemos un proyecto...\n')
-            # project_name = input('Ingresa el nombre del proyecto: ')
-            # print('*********************')
-            # project_code = input('Ingresa el código del proyecto: ')
-            # print('*********************')
-            # project = Project(project_code,project_name)
             project = ProjectsAdmin()
             project_selected = project.select_project()
-            print(project_selected[0].display)
-            # day, month, year = date_select()
-            # print("Ahora vamos a gestionar los talentos que estarán en el documento")
-            # talentos = TalentsSelected()
-            # selected = talentos.get_talents_selected()
-            # print(selected)
-            # infraestructura(project_name, selected)
+
+            # Admin date
+            day, month, year = date_select()
+            # Admin Talents
+            print("Ahora vamos a gestionar los talentos que estarán en el documento")
+            talentos = TalentsSelected()
+            selected = talentos.get_talents_selected()
+
+            # To document generate function
+            infraestructura(project_selected[0].name, selected)
+            print('Documento generado')
 
         if command == 'am':
             pass
         
-        if command == 's':
-            break
 
-    #print('Documento generado')
+
