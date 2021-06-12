@@ -1,22 +1,18 @@
 #/usr/bin/python3
-from docx.shared import Cm
+
 from docxtpl import DocxTemplate, InlineImage
-from docx.shared import Cm, Inches, Mm, Emu
-import random
-import csv
-import re
 import datetime
-import matplotlib.pyplot as plt
+from projects_admin import ProjectsAdmin
+from main_menu import MainMenu
 # from talent_book import TalentBook
 from talents_admin import TalentsSelected
 
-def main():
-        
+def infraestructura(name, talents):
     #Import template document
     template = DocxTemplate('infraestructura.docx')
     context = {
         'city': 'Neiva',
-        'project_name': project_name,
+        'project_name': name,
         'project_manager': "Richard Camilo Saavedra",
         'line': "Tecnologías virtuales",
         'day': day,
@@ -26,7 +22,7 @@ def main():
         }
     #Render automated report
     template.render(context)
-    template.save('infraestructura_report.docx')
+    template.save('infraestructura_document.docx')
 
 def date_select():
     date_select = input('Deseas usar la fecha actual? [S] o [N]: ')
@@ -40,21 +36,6 @@ def date_select():
         year, month, day = map(int, date_entry.split('-'))
     return day, month, year
 
-def request_talents():
-    talent_quantity = int(input('Cuantos talentos se registrarán en la idea: '))
-    table_talents = []
-    for i in range (talent_quantity):
-        talent_name = input(f'Ingresa el nombre del talento {i+1}: ')
-        talent_phone = input(f'ingresa el número de teléfono: ')
-        talent_id = input(f'Ingresa la Identificacion del talento {i+1}: ')
-        table_talents.append({
-            'index': i+1,
-            'talent': talent_name,
-            'phone': talent_phone,
-            'id': talent_id
-        })
-        print(table_talents)
-
     # table_talents = [
     #     { 
     #         'index': 1,
@@ -67,21 +48,42 @@ def request_talents():
     #         'phone': '350435543'
     #     }
     # ]
-    return table_talents
 
 ## Start program
 if __name__ == "__main__":
-    # print('*********************')
-    # project_name = input('Ingresa el nombre del proyecto: ')
-    # print('*********************')
-    # project_code = input('Ingresa el código del proyecto: ')
-    # print('*********************')
-    # day, month, year = date_select()
-    # Request Talents talents
-    talentos = TalentsSelected()
-    talentos.select_talent()
-    print(talentos)
+    print('*********************************************')
+    print('*********************************************')
+    print('Listo vamos a generar los documentos de fase de inicio')
+    print('Selecciona los documentos que se quieren generar')
+    while True:
+        main = MainMenu()
+        command = main.list_options
 
-    #talents  = request_talents()
-    #main()
+        if command == 'a':
+            pass    
+
+        if command == 'm':
+            # Project Admin - Create Project instance
+            print('\nEsta bien... Ahora generemos un proyecto...\n')
+            # project_name = input('Ingresa el nombre del proyecto: ')
+            # print('*********************')
+            # project_code = input('Ingresa el código del proyecto: ')
+            # print('*********************')
+            # project = Project(project_code,project_name)
+            project = ProjectsAdmin()
+            project_selected = project.select_project()
+            print(project_selected[0].display)
+            # day, month, year = date_select()
+            # print("Ahora vamos a gestionar los talentos que estarán en el documento")
+            # talentos = TalentsSelected()
+            # selected = talentos.get_talents_selected()
+            # print(selected)
+            # infraestructura(project_name, selected)
+
+        if command == 'am':
+            pass
+        
+        if command == 's':
+            break
+
     #print('Documento generado')

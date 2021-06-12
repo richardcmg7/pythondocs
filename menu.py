@@ -15,6 +15,6 @@ class Menu:
         [se]eleccionar talentos
         [l]istar talentos
         [e]liminar talento
-        [s]alir     
+        [s]alir con los talentos seleccionados     
         '''
         return command

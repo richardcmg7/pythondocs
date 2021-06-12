@@ -49,6 +49,15 @@ class TalentsSelected:
         return talent_id
     
     ## 
+    def get_talents_selected(self):
+        selected = []
+        talents = self.select_talent()
+        for idx, t in enumerate(talents):
+            data = t.get_array
+            data['index'] =  idx + 1
+            selected.append(data)
+        return selected
+
     def select_talent(self):
         talent_book = TalentBook()
         talent_book.get_csv
@@ -117,6 +126,3 @@ class TalentsSelected:
             if command == 's':
                 break
         return self.talents
-
-
-
