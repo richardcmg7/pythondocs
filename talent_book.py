@@ -1,24 +1,24 @@
 from talent import Talent
 import csv
-import re
+import os
+
 
 class TalentBook:
     
     def __init__(self):
         self._talents = []
 
-    def add(self, name, email, phone, id):
-        talent = Talent(name, email, phone, id)
+    def add(self, name, email, phone, identity, id_city):
+        talent = Talent(name, email, phone, identity, id_city)
         self._talents.append(talent)
         self._save()
     
-    def select(self, id):
+    def select(self, identity):
         for idx, talent in enumerate(self._talents):
-            if idx == id:
+            if idx == identity:
                 return talent
             else: 
                 print('El "ID" ingresado no esta en la lista')
-                
 
     def show_all(self):
         for talent in self._talents:
@@ -36,6 +36,7 @@ class TalentBook:
                 del self._talents[idx]
                 self._save()
                 break
+
     @property
     def get_csv(self):
         with open('talents.csv', 'r') as f:
@@ -43,8 +44,9 @@ class TalentBook:
             for idx, row in enumerate(reader):
                 if idx == 0:
                     continue
-                self.add(row[0],row[1],row[2], row[3])
-        
+                self.add(row[0], row[1], row[2], row[3], row[4])
+        return
+
     def search(self, name):
         for idx, talent in enumerate(self._talents):
             if talent.name.lower() == name.lower():
@@ -55,8 +57,8 @@ class TalentBook:
             self._not_found()
 
     def update(self, idx, talent):
-        alreadyUpdated = False
-        while not alreadyUpdated :
+        already_updated = False
+        while not already_updated:
             item = str(input('''
             Qué deseas actualizar? presione [6] para actualizar:
             [1] Nombre
@@ -81,7 +83,7 @@ class TalentBook:
             elif item == "6":
                 break
             else:
-                os.system ('cls')
+                os.system('cls')
                 print(f'\n\tLa acción {item} no existe')
             self._talents[idx] = talent
             print('\nContacto actualizado con exito.')
@@ -90,17 +92,17 @@ class TalentBook:
     def _save(self):
         with open('talents.csv', 'w') as f:
             writer = csv.writer(f)
-            writer.writerow(('name', 'email', 'phone', 'id'))
+            writer.writerow(('name', 'email', 'phone', 'id', 'id_city'))
 
             for talent in self._talents:
-                writer.writerow((talent.name, talent.email, talent.phone, talent.id))
+                writer.writerow((talent.name, talent.email, talent.phone, talent.identity, talent.id_city))
             
     def __print_talent(self, talent):
         print('--- * --- * --- * --- * --- * --- *')
         print('Nombre: {}'.format(talent.name))
         print('Correo electrónico: {}'.format(talent.email))
         print('Teléfono: {}'.format(talent.phone))
-        print('Identificación: {}'.format(talent.id))
+        print('Identificación: {}'.format(talent.identity))
         print('--- * --- * --- * --- * --- * --- *')
     
     def __print_list_talent(self, idx, talent):
@@ -110,4 +112,7 @@ class TalentBook:
         print('*******')
         print('! No encontrado')
         print('*******')
-        
+        return
+
+# talentos = TalentBook()
+# selected_talents = talentos.show_list()

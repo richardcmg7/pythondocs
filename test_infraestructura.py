@@ -1,11 +1,12 @@
 #/usr/bin/python3
 
-from docxtpl import DocxTemplate, InlineImage
+from docxtpl import DocxTemplate
 import datetime
 from projects_admin import ProjectsAdmin
 from main_menu import MainMenu
 # from talent_book import TalentBook
 from talents_admin import TalentsSelected
+from experts_admin import ExpertsSelected
 
 
 def infraestructura(name, talents):
@@ -25,6 +26,33 @@ def infraestructura(name, talents):
     template.render(context)
     template.save('infraestructura_document.docx')
 
+def confidencialidad(project, talents, experts):
+    # Import template document
+    print(project)
+    template = DocxTemplate('confidencialidad.docx')
+    context = {
+        'city': 'Neiva',
+        'project_name': project[0].name,
+        'project_id': project[0].id,
+        'project_manager': "Richard Camilo Saavedra",
+        'line': "Tecnologías virtuales",
+        'day': day,
+        'month': month,
+        'year': year,
+        'titular_name': talents[0]['name'],
+        'titular_id': talents[0]['id'],
+        'titular_id_city': talents[0]['id_city'],
+        'inter_name': talents[1]['name'],
+        'inter_id': talents[1]['id'],
+        'inter_id_city': talents[1]['id_city'],
+        'ejecutor_name': talents[2]['name'],
+        'ejecutor_id': talents[2]['id'],
+        'ejecutor_id_city': talents[2]['id_city'],
+        'table_experts': experts
+    }
+    # Render automated report
+    template.render(context)
+    template.save('confidencialidad_document.docx')
 
 def date_select():
     data = input('Deseas usar la fecha actual? [S] o [N]: ')
@@ -67,7 +95,25 @@ if __name__ == "__main__":
             break
 
         if command == 'a':
-            pass    
+            print('\nEsta bien... Ahora generemos un proyecto...\n')
+            project = ProjectsAdmin()
+            project_selected = project.select_project()
+
+            # Admin date
+            day, month, year = date_select()
+
+            # Admin Talents
+            print("Ahora vamos a gestionar los talentos que estarán en el documento")
+            talentos = TalentsSelected()
+            selected_talents = talentos.get_talents_selected()
+
+            # Admin Experts
+            experts = ExpertsSelected()
+            selected_experts = experts.get_experts_selected()
+
+            # To document generate function
+            confidencialidad(project_selected, selected_talents, selected_experts)
+            print('Documento generado')
 
         if command == 'm':
             # Project Admin - Create Project instance
