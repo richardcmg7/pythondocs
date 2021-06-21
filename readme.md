@@ -3,19 +3,23 @@
 ## Contenido
 - [Instalacion](#instalation)
 - [Motivación](#motivation)
-- [Descripción de archivos](#description)
+- [Como Usarlo](#description)
 
 <p align=""center">
     Esta aplicación apoya la generación de documentos "Manual de uso de infraestructura y confidencialidad"
 </p>
 
+
+<a name="installation"></a>
 ## Instalacion
 
+<a name="motivation"></a>
 ## Motivación
 
 Dentro del proceso de desarrollo de software, el desarrollo de scripts aportan para el mejoramiento de la productividad. 
 Esta aplicación tiene como fin apoyar en el desarrollo de documentos necesarios en el desarrollo de la gestion de proyectos en Tecnoparque.
 
+<a name="description"></a>
 ## Como usarlo
 
 El repositorio se encuentra en una primera etapa y será actualizado constantemente.
@@ -39,8 +43,11 @@ Los diferentes registros se guardaran en un documento con extension .csv persist
 - Ejecutar con `python3 test_infraestructura.py` o `python test_infraestructura` según como tenga instalado el interprete de python.
 - Seguir las instrucciones detenidamente.
     * Administrador de proyectos:
-        El menu presenta diferentes opciones, si no se h
-
+        El menu presenta diferentes opciones. Seleccionar la opcion. recuerda para finalizar debe dar en salir con el elemento seleccionado.
+    * Gestion de talentos.
+        Para el documento de confidencialidad deben pasar 3 de ellos(Titular, interlocutor, ejecutor). Utiliza el formato `1,2,1`
+    * Gestion de expertos
+        Seleccionar todos los expertos que iran en el documento. Utilizar la opcion salir para devolver los expertos seleccionados. Utiliza la forma: `0,1,2,3,4..`
 ## Versiones
 
 Las actualizaciones se desarrollaran a traves de los diferentes realeases.
