@@ -81,7 +81,6 @@ class ExpertBook:
             elif item == "6":
                 break
             else:
-                os.system('cls')
                 print(f'\n\tLa acción {item} no existe')
             self._experts[idx] = expert
             print('\nContacto actualizado con exito.')

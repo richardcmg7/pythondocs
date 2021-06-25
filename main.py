@@ -2,16 +2,16 @@
 
 from docxtpl import DocxTemplate
 import datetime
-from projects_admin import ProjectsAdmin
+from src.projects.projects_admin import ProjectsAdmin
 from main_menu import MainMenu
 # from talent_book import TalentBook
-from talents_admin import TalentsSelected
-from experts_admin import ExpertsSelected
+from src.talents.talents_admin import TalentsSelected
+from src.experts.experts_admin import ExpertsSelected
 
 
 def infraestructura(name, talents):
     # Import template document
-    template = DocxTemplate('infraestructura.docx')
+    template = DocxTemplate('templates/infraestructura.docx')
     context = {
         'city': 'Neiva',
         'project_name': name,
@@ -24,12 +24,13 @@ def infraestructura(name, talents):
         }
     #Render automated report
     template.render(context)
-    template.save('infraestructura_document.docx')
+    template.save('generated/infraestructura_document.docx')
+
 
 def confidencialidad(project, talents, experts):
     # Import template document
     print(project)
-    template = DocxTemplate('confidencialidad.docx')
+    template = DocxTemplate('templates/confidencialidad.docx')
     context = {
         'city': 'Neiva',
         'project_name': project[0].name,
@@ -52,7 +53,8 @@ def confidencialidad(project, talents, experts):
     }
     # Render automated report
     template.render(context)
-    template.save('confidencialidad_document.docx')
+    template.save('/generated/confidencialidad_document.docx')
+
 
 def date_select():
     data = input('Deseas usar la fecha actual? [S] o [N]: ')

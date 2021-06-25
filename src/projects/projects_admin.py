@@ -1,12 +1,10 @@
 from menu_projects import MenuProjects
 from project_book import ProjectBook
-import csv
-import re
+
 
 class ProjectsAdmin:
     def __init__(self):
         self.project = []
-
 
     def select_project(self):
         project_book = ProjectBook()

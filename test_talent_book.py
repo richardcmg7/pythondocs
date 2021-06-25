@@ -1,5 +1,5 @@
 from unittest import TestCase
-from talent_book import TalentBook
+from src.talents.talent_book import TalentBook
 
 
 class Test(TestCase):

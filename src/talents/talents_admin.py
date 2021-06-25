@@ -1,4 +1,4 @@
-from menu import Menu
+from src.talents.menu_talents import Menu
 from talent_book import TalentBook
 import re
 
