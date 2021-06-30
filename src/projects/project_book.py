@@ -2,6 +2,7 @@ from project import Project
 import csv
 import re
 
+
 class ProjectBook:
     
     def __init__(self):
@@ -112,14 +113,16 @@ class ProjectBook:
         print('! No encontrado')
         print('*******')
 
-# project_book = ProjectBook()
-# project_book.add('P-043','Este es el proyecto 1','2021-05-12')
-# project_book.add('P-044','Este es el proyecto 1','2021-05-13')
-# project_book.add('P-045','Este es el proyecto 1','2021-05-21')
-# # # project_book.get_csv
-# project_book.show_list()
-# # data = input('Write Id del proyecto to delete: ')
-# # project_book.delete(data)
-# # project_book.show_list()
-# select = project_book.select(1)
-# print(select.display)
+
+if __name__ == '__main__':
+    project_book = ProjectBook()
+    project_book.add('P-043','Este es el proyecto 1','2021-05-12')
+    project_book.add('P-044','Este es el proyecto 1','2021-05-13')
+    project_book.add('P-045','Este es el proyecto 1','2021-05-21')
+    # # project_book.get_csv
+    project_book.show_list()
+    # data = input('Write Id del proyecto to delete: ')
+    # project_book.delete(data)
+    # project_book.show_list()
+    select = project_book.select(1)
+    print(select.display)
