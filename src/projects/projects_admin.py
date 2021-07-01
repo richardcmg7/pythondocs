@@ -1,5 +1,5 @@
-from menu_projects import MenuProjects
-from project_book import ProjectBook
+from src.projects.menu_projects import MenuProjects
+from src.projects.project_book import ProjectBook
 
 
 class ProjectsAdmin:
@@ -38,7 +38,7 @@ class ProjectsAdmin:
                 #     print(f'\nEl talento {talent_name} no fue encontrado\n')
 
             if command == 'se': 
-                self.project= []
+                self.project = []
                 isValidProject = False
                 project_book.show_list()
                 while not isValidProject:
@@ -67,7 +67,10 @@ class ProjectsAdmin:
             if command == 's':
                 break
         return self.project
-#
-# project = ProjectsAdmin()
-# selected = project.select_project()
-# print(selected)
+
+
+## Main to test program
+if __name__ == '__main__':
+    project = ProjectsAdmin()
+    selected = project.select_project()
+    print(selected)

@@ -1,10 +1,9 @@
-from project import Project
+from src.projects.project import Project
 import csv
-import re
-
+import os
 
 class ProjectBook:
-    
+
     def __init__(self):
         self._projects = []
 
@@ -20,7 +19,6 @@ class ProjectBook:
                 return project
         else:
             self._not_found()
-                
 
     def show_all(self):
         for project in self._projects:
@@ -43,7 +41,7 @@ class ProjectBook:
     
     @property
     def get_csv(self):
-        with open('projects.csv', 'r') as f:
+        with open('./src/projects/projects.csv', 'r') as f:
             reader = csv.reader(f)
             for idx, row in enumerate(reader):
                 if idx == 0:
@@ -91,7 +89,7 @@ class ProjectBook:
             self._save()
 
     def _save(self):
-        with open('projects.csv', 'w') as f:
+        with open('./src/projects/projects.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerow(('ID proyecto', 'Nombre del proyecto', 'fecha de registro'))
 

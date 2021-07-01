@@ -1,5 +1,5 @@
 from src.experts.menu_experts import MenuExperts
-from expert_book import ExpertBook
+from src.experts.expert_book import ExpertBook
 import re
 
 
@@ -124,6 +124,8 @@ class ExpertsSelected:
                 break
         return self.experts
 
+
 # For testing purpose
-selected = ExpertsSelected()
-selected.select_expert()
+if __name__ == '__main__':
+    selected = ExpertsSelected()
+    selected.select_expert()

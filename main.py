@@ -24,7 +24,7 @@ def infraestructura(name, talents):
         }
     #Render automated report
     template.render(context)
-    template.save('generated/infraestructura_document.docx')
+    template.save('./generated/infraestructura_document.docx')
 
 
 def confidencialidad(project, talents, experts):
@@ -53,7 +53,7 @@ def confidencialidad(project, talents, experts):
     }
     # Render automated report
     template.render(context)
-    template.save('/generated/confidencialidad_document.docx')
+    template.save('./generated/confidencialidad_document.docx')
 
 
 def date_select():
@@ -67,19 +67,6 @@ def date_select():
         date_entry = input('Ingresa fecha  con formato YYYY-MM-DD: ')
         year, month, day = map(int, date_entry.split('-'))
     return day, month, year
-
-    # table_talents = [
-    #     { 
-    #         'index': 1,
-    #         'talent': 'Daniel Martinez',
-    #         'phone': '3506764164'
-    #     },
-    #     {
-    #         'index': 2,
-    #         'talent': 'Mario Santos',
-    #         'phone': '350435543'
-    #     }
-    # ]
 
 
 ## Start program

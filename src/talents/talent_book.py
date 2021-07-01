@@ -1,4 +1,4 @@
-from talent import Talent
+from src.talents.talent import Talent
 import csv
 import os
 
@@ -39,7 +39,7 @@ class TalentBook:
 
     @property
     def get_csv(self):
-        with open('talents.csv', 'r') as f:
+        with open('./src/talents/talents.csv', 'r') as f:
             reader = csv.reader(f)
             for idx, row in enumerate(reader):
                 if idx == 0:
@@ -90,7 +90,7 @@ class TalentBook:
             self._save()
 
     def _save(self):
-        with open('talents.csv', 'w') as f:
+        with open('./src/talents/talents.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerow(('name', 'email', 'phone', 'id', 'id_city'))
 

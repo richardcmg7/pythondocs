@@ -1,7 +1,7 @@
-from expert import Expert
+from src.experts.expert import Expert
 import csv
-import re
-import os
+
+
 class ExpertBook:
     
     def __init__(self):
@@ -38,7 +38,7 @@ class ExpertBook:
                 break
     @property
     def get_csv(self):
-        with open('experts.csv', 'r') as f:
+        with open('./src/experts/experts.csv', 'r') as f:
             reader = csv.reader(f)
             for idx, row in enumerate(reader):
                 if idx == 0:
@@ -87,7 +87,7 @@ class ExpertBook:
             self._save()
 
     def _save(self):
-        with open('experts.csv', 'w') as f:
+        with open('./src/experts/experts.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerow(('name', 'email', 'phone', 'id'))
 
