@@ -1,7 +1,7 @@
 # Generarador de documentos
 
 ## Contenido
-- [Instalacion](#instalation)
+- [Instalacion](#install)
 - [Motivación](#motivation)
 - [Como Usarlo](#description)
 
@@ -10,7 +10,7 @@
 </p>
 
 
-<a name="installation"></a>
+<a name="install"></a>
 ## Instalacion
 
 <a name="motivation"></a>
