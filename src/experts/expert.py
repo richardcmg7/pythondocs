@@ -1,10 +1,12 @@
 class Expert:
+    count = 0
 
     def __init__(self, name, email, phone, identity):
         self._name = name
         self._email = email
         self._phone = phone
         self._identity = identity
+        self.count += 1
 
     @property
     def name(self):

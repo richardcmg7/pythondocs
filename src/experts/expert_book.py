@@ -3,7 +3,7 @@ import csv
 
 
 class ExpertBook:
-    
+
     def __init__(self):
         self._experts = []
 
@@ -11,12 +11,12 @@ class ExpertBook:
         expert = Expert(name, email, phone, identity)
         self._experts.append(expert)
         self._save()
-    
+
     def select(self, ident):
         for idx, expert in enumerate(self._experts):
             if idx == ident:
                 return expert
-            else: 
+            else:
                 print('El "ID" ingresado no esta en la lista')
 
     def show_all(self):
@@ -49,23 +49,20 @@ class ExpertBook:
                 if idx == 0:
                     continue
                 self.add(row[0], row[1], row[2], row[3])
-        
+
     def search(self, name):
         find = 0
         temp = []
         for idx, expert in enumerate(self._experts):
-            print()
-            if expert.name.lower() == name.lower() or expert.email.lower() == name.lower():
-                print('Experto que coincide con la busqueda')
-                print(expert)
+            expert_str = expert.__str__()
+            if name in expert_str:
+                print(expert_str)
                 temp.append(expert)
-                # self.__print_expert(expert)
-                # return idx, expert
                 find += 1
-        
+        print(find)
         if find == 0:
             self._not_found()
-        
+            return
         else:
             return temp
 
@@ -127,11 +124,16 @@ class ExpertBook:
 
 
 if __name__ == '__main__':
-    experts = ExpertBook()
-    experts.add("Richard", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.add("camilo", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.add("Saavedra", "richardc7@misena.edu.co", "3506764164", "14397755")
-    # experts.show_list()
-    # experts.show_all()
-    experts_finded = experts.search('rcsaavedra@sena.edu.co')
-    print(experts_finded)
+    try:
+        experts = ExpertBook()
+        experts.add("Richard", "rcsaavedra@sena.edu.co", "3175138893", "14397755")
+        experts.add("camilo", "richardcmg7@sena.edu.co", "3506764164", "25174740")
+        experts.add("Saavedra", "richardc7@misena.edu.co", "3506764164", "14397755")
+        # experts.show_list()
+        # experts.show_all()
+        experts_finded = experts.search('richard')
+        assert (len(experts._experts) == 3)
+        assert (len(experts_finded) == 2)
+        print("Se han validado correctamente la clase")
+    except:
+        print(f'error al validar test')
