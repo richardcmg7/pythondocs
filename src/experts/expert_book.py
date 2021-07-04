@@ -18,7 +18,6 @@ class ExpertBook:
                 return expert
             else: 
                 print('El "ID" ingresado no esta en la lista')
-                
 
     def show_all(self):
         for expert in self._experts:
@@ -36,14 +35,15 @@ class ExpertBook:
                 del self._experts[idx]
                 self._save()
                 break
+
     @property
     def get_csv(self):
-        with open('./src/experts/experts.csv', 'r') as f:
+        with open('src/experts/experts.csv', 'r') as f:
             reader = csv.reader(f)
             for idx, row in enumerate(reader):
                 if idx == 0:
                     continue
-                self.add(row[0],row[1],row[2], row[3])
+                self.add(row[0], row[1], row[2], row[3])
         
     def search(self, name):
         for idx, expert in enumerate(self._experts):
@@ -87,12 +87,12 @@ class ExpertBook:
             self._save()
 
     def _save(self):
-        with open('./src/experts/experts.csv', 'w') as f:
+        with open('src/experts/experts.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerow(('name', 'email', 'phone', 'id'))
 
             for expert in self._experts:
-                writer.writerow((expert.name, expert.email, expert.phone, expert.id))
+                writer.writerow((expert.name, expert.email, expert.phone, expert.identity))
 
     def __print_expert(self, expert):
         print('--- * --- * --- * --- * --- * --- *')
@@ -110,8 +110,10 @@ class ExpertBook:
         print('! No encontrado')
         print('*******')
 
-# experts = ExpertBook()
-# experts.add("Richard", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-# experts.add("Camilo", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-# experts.add("Saavedra", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-# experts.show_list()
+
+if __name__ == '__main__':
+    experts = ExpertBook()
+    experts.add("Richard", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
+    experts.add("Camilo", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
+    experts.add("Saavedra", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
+    experts.show_list()
