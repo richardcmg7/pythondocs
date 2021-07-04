@@ -1,15 +1,14 @@
-from menu_experts import MenuExperts
-from expert_book import ExpertBook
-import csv
+from src.experts.menu_experts import MenuExperts
+from src.experts.expert_book import ExpertBook
 import re
 
 
 def phone_input():
-    isSevenToTenNumber = False
-    while not isSevenToTenNumber:
+    is_seven_to_ten_number = False
+    while not is_seven_to_ten_number:
         talent_phone = input(f'ingresa el número de teléfono: ')
-        if (len(talent_phone) >= 7 and len(talent_phone) <= 10):
-            isSevenToTenNumber = True
+        if 7 <= len(talent_phone) <= 10:
+            is_seven_to_ten_number = True
         else:
             print('El teléfono debe ser de 7 o 10 numeros')
         print('El telefono ingresado es: ' + talent_phone)
@@ -21,34 +20,32 @@ class ExpertsSelected:
         self.experts = []
 
     def email_input(self):
-        isValidInputEmail = False
+        is_valid_input_email = False
         # for validating an Email
         regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
 
-        while not isValidInputEmail:
+        while not is_valid_input_email:
             talent_email = input(f'Ingresa el correo electrónico: ')
             # pass the regular expression
             # and the string in search() method
-            if (re.search(regex, talent_email)):
-                isValidInputEmail = True
+            if re.search(regex, talent_email):
+                is_valid_input_email = True
             else:
                 print("El formato de correo electrónico es invalido")
         return talent_email
 
     def id_input(self):
-        isValidId = False
+        is_valid_id = False
 
-        while not isValidId:
-            talent_id = input('Ingresa el número de identificación del' \
-                              ' talento: ')
+        while not is_valid_id:
+            talent_id = input('Ingresa el número de identificación del talento: ')
             talent_id = talent_id.replace(".", "")
-            if (talent_id.isdigit() and 5 <= len(talent_id) <= 12):
-                isValidId = True
+            if talent_id.isdigit() and 5 <= len(talent_id) <= 12:
+                is_valid_id = True
             else:
-                print('La identificación debe ser un numero entre 5' \
-                      ' y 11 caracteres. ')
+                print('La identificación debe ser un numero entre 5 y 11 caracteres. ')
         return talent_id
-    ## 
+
     def get_experts_selected(self):
         select = []
         experts = self.select_expert()
@@ -111,7 +108,7 @@ class ExpertsSelected:
                             expert.display
                             self.experts.append(expert)
                             isValidexperts = True
-                        except:
+                        finally:
                             print("No es valida la seleccion")
                             # isValidexperts = False
                     print(f'\n {self.experts}')
@@ -127,6 +124,8 @@ class ExpertsSelected:
                 break
         return self.experts
 
-#
-# selected = ExpertsSelected()
-# selected.select_expert()
+
+# For testing purpose
+if __name__ == '__main__':
+    selected = ExpertsSelected()
+    selected.select_expert()

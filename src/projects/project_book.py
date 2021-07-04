@@ -1,9 +1,9 @@
-from project import Project
+from src.projects.project import Project
 import csv
-import re
+import os
 
 class ProjectBook:
-    
+
     def __init__(self):
         self._projects = []
 
@@ -19,7 +19,6 @@ class ProjectBook:
                 return project
         else:
             self._not_found()
-                
 
     def show_all(self):
         for project in self._projects:
@@ -42,7 +41,7 @@ class ProjectBook:
     
     @property
     def get_csv(self):
-        with open('projects.csv', 'r') as f:
+        with open('./src/projects/projects.csv', 'r') as f:
             reader = csv.reader(f)
             for idx, row in enumerate(reader):
                 if idx == 0:
@@ -90,7 +89,7 @@ class ProjectBook:
             self._save()
 
     def _save(self):
-        with open('projects.csv', 'w') as f:
+        with open('./src/projects/projects.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerow(('ID proyecto', 'Nombre del proyecto', 'fecha de registro'))
 
@@ -112,14 +111,16 @@ class ProjectBook:
         print('! No encontrado')
         print('*******')
 
-# project_book = ProjectBook()
-# project_book.add('P-043','Este es el proyecto 1','2021-05-12')
-# project_book.add('P-044','Este es el proyecto 1','2021-05-13')
-# project_book.add('P-045','Este es el proyecto 1','2021-05-21')
-# # # project_book.get_csv
-# project_book.show_list()
-# # data = input('Write Id del proyecto to delete: ')
-# # project_book.delete(data)
-# # project_book.show_list()
-# select = project_book.select(1)
-# print(select.display)
+
+if __name__ == '__main__':
+    project_book = ProjectBook()
+    project_book.add('P-043','Este es el proyecto 1','2021-05-12')
+    project_book.add('P-044','Este es el proyecto 1','2021-05-13')
+    project_book.add('P-045','Este es el proyecto 1','2021-05-21')
+    # # project_book.get_csv
+    project_book.show_list()
+    # data = input('Write Id del proyecto to delete: ')
+    # project_book.delete(data)
+    # project_book.show_list()
+    select = project_book.select(1)
+    print(select.display)
