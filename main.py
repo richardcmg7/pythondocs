@@ -22,7 +22,7 @@ def infraestructura(name, talents):
         'year': year,
         'table_talents': talents,
         }
-    #Render automated report
+    # Render automated report
     template.render(context)
     template.save('./generated/infraestructura_document.docx')
 

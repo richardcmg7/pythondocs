@@ -3,31 +3,36 @@ import csv
 
 
 class ExpertBook:
-    
+
     def __init__(self):
         self._experts = []
 
-    def add(self, name, email, phone, id):
-        expert = Expert(name, email, phone, id)
+    def add(self, name, email, phone, identity):
+        expert = Expert(name, email, phone, identity)
         self._experts.append(expert)
         self._save()
-    
-    def select(self, id):
+
+    def select(self, ident):
         for idx, expert in enumerate(self._experts):
-            if idx == id:
+            if idx == ident:
                 return expert
-            else: 
+            else:
                 print('El "ID" ingresado no esta en la lista')
 
     def show_all(self):
         for expert in self._experts:
             # print(expert)
             self.__print_expert(expert)
+        print("Se han mostrado todos los expertos")
+        print("Puedes utilizar 'show_list()' para mostrarlo mas compacto")
+        input("Presiona una tecla para continuar")
 
     def show_list(self):
         print('|  Id |   Nombre  | Correo electrónico')
         for idx, expert in enumerate(self._experts):
             self.__print_list_expert(idx, expert)
+        print("Se han mostrado todos los expertos".center(50, '-'))
+        input("Presiona una tecla para continuar")
 
     def delete(self, email):
         for idx, expert in enumerate(self._experts):
@@ -44,15 +49,23 @@ class ExpertBook:
                 if idx == 0:
                     continue
                 self.add(row[0], row[1], row[2], row[3])
-        
+        return self._experts
+
     def search(self, name):
+        find = 0
+        temp = []
         for idx, expert in enumerate(self._experts):
-            if expert.name.lower() == name.lower():
-                print('Se ha encontrado el(los) experto(s)')
-                self.__print_expert(expert)
-                return idx, expert
-        else: 
+            expert_str = expert.__str__()
+            if name in expert_str:
+                print(expert_str)
+                temp.append(expert)
+                find += 1
+        print(find)
+        if find == 0:
             self._not_found()
+            return
+        else:
+            return temp
 
     def update(self, idx, expert):
         already_updated = False
@@ -94,26 +107,41 @@ class ExpertBook:
             for expert in self._experts:
                 writer.writerow((expert.name, expert.email, expert.phone, expert.identity))
 
-    def __print_expert(self, expert):
-        print('--- * --- * --- * --- * --- * --- *')
+    @staticmethod
+    def __print_expert(expert):
+        print('Experto'.center(50, "*"))
         print('Nombre: {}'.format(expert.name))
         print('Correo electrónico: {}'.format(expert.email))
         print('Teléfono: {}'.format(expert.phone))
-        print('Identificación: {}'.format(expert.id))
-        print('--- * --- * --- * --- * --- * --- *')
+        print('Identificación: {}'.format(expert.identity))
+        print('*'.center(50, "*"))
 
-    def __print_list_expert(self, idx, expert):
+    @staticmethod
+    def __print_list_expert(idx, expert):
         print(f'|  {idx}  | {expert.name}  |  {expert.email} | ')
 
-    def _not_found(self):
-        print('*******')
-        print('! No encontrado')
-        print('*******')
+    @staticmethod
+    def _not_found():
+        print('*'.center(50, "*"))
+        print(' No encontrado '.center(50, "-"))
+        print('*'.center(50, "*"))
+
+    @property
+    def experts(self):
+        return self._experts
 
 
 if __name__ == '__main__':
-    experts = ExpertBook()
-    experts.add("Richard", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.add("Camilo", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.add("Saavedra", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.show_list()
+    try:
+        experts = ExpertBook()
+        experts.add("Richard", "rcsaavedra@sena.edu.co", "3175138893", "14397755")
+        experts.add("camilo", "richardcmg7@sena.edu.co", "3506764164", "25174740")
+        experts.add("Saavedra", "richardc7@misena.edu.co", "3506764164", "14397755")
+        # experts.show_list()
+        # experts.show_all()
+        experts_finded = experts.search('richard')
+        assert (len(experts.experts) == 2)
+        assert (len(experts_finded) == 2)
+        print("Se han validado correctamente la clase")
+    except AssertionError:
+        print(f'Error al validar test'.center(50, '*'))
