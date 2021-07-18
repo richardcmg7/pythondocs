@@ -3,52 +3,12 @@ from src.talents.talent_book import TalentBook
 import re
 
 
-def phone_input():
-    is_seven_to_ten_number = False
-    while not is_seven_to_ten_number:
-        talent_phone = input(f'ingresa el número de teléfono: ')
-        if (len(talent_phone) >= 7 and len(talent_phone) <= 10):
-            is_seven_to_ten_number = True
-        else:
-            print('El teléfono debe ser de 7 o 10 numeros')
-        print('El telefono ingresado es: ' + talent_phone)
-    return talent_phone
-
-
-def email_input():
-    isValidInputEmail = False
-    # for validating an Email
-    regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
-
-    while not isValidInputEmail:
-        talent_email = input(f'Ingresa el correo electrónico: ')
-        # pass the regular expression
-        # and the string in search() method
-        if (re.search(regex, talent_email)):
-            isValidInputEmail = True
-        else:
-            print("El formato de correo electrónico es invalido")
-    return talent_email
-
-
-def id_input():
-    is_valid_id = False
-
-    while not is_valid_id:
-        talent_id = input('Ingresa el número de identificación del' \
-                          ' talento: ')
-        talent_split = talent_id.split(".")
-        if (talent_id.isdigit() and 5 <= len(talent_id) <= 12):
-            is_valid_id = True
-        else:
-            print('La identificación debe ser un numero entre 5' \
-                  ' y 11 caracteres. ')
-    return talent_id
-
-
 class TalentsSelected:
     def __init__(self):
         self.talents = []
+        self.talent_phone = ""
+        self.talent_id = ""
+        self.talent_email = ""
 
     def get_talents_selected(self):
         selected = []
@@ -75,13 +35,13 @@ class TalentsSelected:
                 # Name input
                 talent_name = input(f'Ingresa el nombre del talento: ')
                 # Phone input with validation
-                talent_phone = phone_input()
+                talent_phone = self.phone_input()
 
                 # Email input with validation
-                talent_email = email_input()
+                talent_email = self.email_input()
 
                 # Id Input with validation
-                talent_id = id_input()
+                talent_id = self.id_input()
 
                 # Identification city
                 talent_id_city = input("Ingresa la ciudad de expedición de la identificación: ")
@@ -93,7 +53,7 @@ class TalentsSelected:
                 try:
                     idx, talent = talent_book.search(talent_name)
                     talent_book.update(idx, talent)
-                except:
+                except ValueError:
                     print(f'\nEl talento {talent_name} no fue encontrado\n')
 
             if command == 'b':
@@ -114,7 +74,7 @@ class TalentsSelected:
                             talent.display
                             self.talents.append(talent)
                             is_valid_talents = True
-                        except:
+                        except ValueError:
                             print("No es valida la seleccion")
                             # is_valid_talents = False
                     print(f'\n {self.talents}')
@@ -127,8 +87,53 @@ class TalentsSelected:
                 talent_book.delete(talent_email)
 
             if command == 's':
+                for t in self.talents:
+                    t.display
                 break
         return self.talents
 
-# talentos = TalentsSelected()
-# selected_talents = talentos.get_talents_selected()
+    def phone_input(self):
+        is_seven_to_ten_number = False
+        while not is_seven_to_ten_number:
+            self.talent_phone = input(f'ingresa el número de teléfono: ')
+            if 7 <= len(self.talent_phone) <= 10:
+                is_seven_to_ten_number = True
+            else:
+                print('El teléfono debe ser de 7 o 10 numeros')
+            print('El telefono ingresado es: ' + self.talent_phone)
+        return self.talent_phone
+
+    def email_input(self):
+        is_valid_input_email = False
+        # for validating an Email
+        regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+
+        while not is_valid_input_email:
+            self.talent_email = input(f'Ingresa el correo electrónico: ')
+            # pass the regular expression
+            # and the string in search() method
+            if re.search(regex, self.talent_email):
+                is_valid_input_email = True
+            else:
+                print("El formato de correo electrónico es invalido")
+        return self.talent_email
+
+    def id_input(self):
+        is_valid_id = False
+    
+        while not is_valid_id:
+            self.talent_id = input('Ingresa el número de identificación del'
+                              ' talento: ')
+            talent_split = self.talent_id.split(".")
+            if self.talent_id.isdigit() and 5 <= len(self.talent_id) <= 12:
+                is_valid_id = True
+            else:
+                print('La identificación debe ser un numero entre 5'
+                      ' y 11 caracteres. ')
+        return self.talent_id
+
+
+# For testing purpose
+if __name__ == '__main__':
+    selected = TalentsSelected()
+    selected.select_talent()
