@@ -49,6 +49,7 @@ class ExpertBook:
                 if idx == 0:
                     continue
                 self.add(row[0], row[1], row[2], row[3])
+        return self._experts
 
     def search(self, name):
         find = 0
@@ -106,7 +107,8 @@ class ExpertBook:
             for expert in self._experts:
                 writer.writerow((expert.name, expert.email, expert.phone, expert.identity))
 
-    def __print_expert(self, expert):
+    @staticmethod
+    def __print_expert(expert):
         print('Experto'.center(50, "*"))
         print('Nombre: {}'.format(expert.name))
         print('Correo electrónico: {}'.format(expert.email))
@@ -114,13 +116,19 @@ class ExpertBook:
         print('Identificación: {}'.format(expert.identity))
         print('*'.center(50, "*"))
 
-    def __print_list_expert(self, idx, expert):
+    @staticmethod
+    def __print_list_expert(idx, expert):
         print(f'|  {idx}  | {expert.name}  |  {expert.email} | ')
 
-    def _not_found(self):
+    @staticmethod
+    def _not_found():
         print('*'.center(50, "*"))
         print(' No encontrado '.center(50, "-"))
         print('*'.center(50, "*"))
+
+    @property
+    def experts(self):
+        return self._experts
 
 
 if __name__ == '__main__':
@@ -132,8 +140,8 @@ if __name__ == '__main__':
         # experts.show_list()
         # experts.show_all()
         experts_finded = experts.search('richard')
-        assert (len(experts._experts) == 3)
+        assert (len(experts.experts) == 2)
         assert (len(experts_finded) == 2)
         print("Se han validado correctamente la clase")
-    except:
-        print(f'error al validar test')
+    except AssertionError:
+        print(f'Error al validar test'.center(50, '*'))
