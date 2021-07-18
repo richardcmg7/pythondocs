@@ -48,13 +48,20 @@ class TalentBook:
         return
 
     def search(self, name):
-        for idx, talent in enumerate(self._talents):
-            if talent.name.lower() == name.lower():
-                print('Se ha encontrado el(los) talento(s)')
-                self.__print_talent(talent)
-                return idx, talent
-        else: 
+        find = 0
+        temp = []
+        for idx, expert in enumerate(self._talents):
+            talent_str = expert.__str__()
+            if name in talent_str:
+                print(talent_str)
+                temp.append(name)
+                find += 1
+        print(find)
+        if find == 0:
             self._not_found()
+            return
+        else:
+            return temp
 
     def update(self, idx, talent):
         already_updated = False
@@ -114,5 +121,13 @@ class TalentBook:
         print('*******')
         return
 
+
+if __name__ == '__main__':
+    talents = TalentBook()
+    talents.add("Richard", "rcsaavedra@sena.edu.co", "3506764164", "14397755", 'Ibague')
+    talents.add("Camilo", "rcsaavedra@sena.edu.co", "3506764164", "14397755", 'Neiva')
+    talents.add("Saavedra", "rcsaavedra@sena.edu.co", "3506764164", "14397755", 'pereira')
+    talents.show_list()
+    print(talents.search('3506764164'))
 # talentos = TalentBook()
 # selected_talents = talentos.show_list()
