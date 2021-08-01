@@ -46,7 +46,7 @@ class ProjectBook:
             for idx, row in enumerate(reader):
                 if idx == 0:
                     continue
-                self.add(row[0],row[1],row[2])
+                self.add(row[0], row[1], row[2])
         
     def search(self, name):
         for idx, project in enumerate(self._projects):
