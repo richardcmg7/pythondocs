@@ -3,7 +3,7 @@ from abc import abstractmethod
 
 
 class Person:
-    def __init__(self, name, email, phone, identity, id_city=""):
+    def __init__(self, name, email, phone, identity, id_city=" "):
         self._name = name
         self._email = email
         self._phone = phone

@@ -7,14 +7,14 @@ class ExpertBook:
     def __init__(self):
         self._experts = []
 
-    def add(self, name, email, phone, id):
-        expert = Expert(name, email, phone, id)
+    def add(self, name, email, phone, identity, id_city=""):
+        expert = Expert(name, email, phone, identity, id_city)
         self._experts.append(expert)
         self._save()
     
-    def select(self, id):
+    def select(self, _id):
         for idx, expert in enumerate(self._experts):
-            if idx == id:
+            if idx == _id:
                 return expert
             else: 
                 print('El "ID" ingresado no esta en la lista')
@@ -43,8 +43,9 @@ class ExpertBook:
             for idx, row in enumerate(reader):
                 if idx == 0:
                     continue
-                self.add(row[0], row[1], row[2], row[3])
-        
+                self.add(row[0], row[1], row[2], row[3], row[4])
+        return 0
+
     def search(self, name):
         for idx, expert in enumerate(self._experts):
             if expert.name.lower() == name.lower():
@@ -72,12 +73,13 @@ class ExpertBook:
             if item == "3":
                 expert.phone = str(input("Escribe el nuevo teléfono: "))
             if item == "4":
-                expert.id = str(input("Escribe la nueva identificación: "))
+                expert.identity = str(input("Escribe la nueva identificación: "))
             if item == "5":
                 expert.name = str(input("Escribe el nuevo nombre: "))
                 expert.email = str(input("Escribe el nuevo correo electrónico: "))
                 expert.phone = str(input("Escribe el nuevo teléfono: "))
-                expert.id = str(input("Escribe la nueva identificación: "))
+                expert.identity = str(input("Escribe la nueva identificación: "))
+                expert.id_city = str(input("Escribe la ciudad de la identificación "))
             elif item == "6":
                 break
             else:
@@ -89,23 +91,26 @@ class ExpertBook:
     def _save(self):
         with open('src/experts/experts.csv', 'w') as f:
             writer = csv.writer(f)
-            writer.writerow(('name', 'email', 'phone', 'id'))
+            writer.writerow(('name', 'email', 'phone', 'identity', 'id_city'))
 
             for expert in self._experts:
-                writer.writerow((expert.name, expert.email, expert.phone, expert.identity))
+                writer.writerow((expert.name, expert.email, expert.phone, expert.identity, expert.id_city))
 
-    def __print_expert(self, expert):
+    @staticmethod
+    def __print_expert(expert):
         print('--- * --- * --- * --- * --- * --- *')
         print('Nombre: {}'.format(expert.name))
         print('Correo electrónico: {}'.format(expert.email))
         print('Teléfono: {}'.format(expert.phone))
-        print('Identificación: {}'.format(expert.id))
+        print('Identificación: {}'.format(expert.identity))
         print('--- * --- * --- * --- * --- * --- *')
 
-    def __print_list_expert(self, idx, expert):
+    @staticmethod
+    def __print_list_expert(idx, expert):
         print(f'|  {idx}  | {expert.name}  |  {expert.email} | ')
 
-    def _not_found(self):
+    @staticmethod
+    def _not_found():
         print('*******')
         print('! No encontrado')
         print('*******')
@@ -113,7 +118,9 @@ class ExpertBook:
 
 if __name__ == '__main__':
     experts = ExpertBook()
-    experts.add("Richard", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.add("Camilo", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.add("Saavedra", "rcsaavedra@sena.edu.co", "3506764164", "14397755")
-    experts.show_list()
+    experts.get_csv
+    print(experts._experts)
+    # experts.add("Richard", "rcsaavedra@sena.edu.co", "3506764164", "14397755", "Ibagué")
+    # experts.add("Camilo", "rcsaavedra@sena.edu.co", "3506764164", "14397755", "Ibagué")
+    # experts.add("Saavedra", "rcsaavedra@sena.edu.co", "3506764164", "14397755", "Ibagué")
+    # experts.show_list()

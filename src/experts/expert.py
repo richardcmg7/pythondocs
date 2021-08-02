@@ -4,7 +4,7 @@ from src.persons.Person import Person
 class Expert(Person):
     count = 0
 
-    def __init__(self, name, email, phone, identity, id_city):
+    def __init__(self, name, email, phone, identity, id_city=""):
         Person.__init__(self, name, email, phone, identity, id_city)
 
     @classmethod
