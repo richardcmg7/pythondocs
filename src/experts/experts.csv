@@ -1,10 +1,10 @@
-name,email,phone,id
-Lisseth Katherine Ramírez,lramireza@sena.edu.co,3506764164,1.098.675.788
-Jorge Andrés Pérez Gamboa ,japerezg@sena.edu.co,3167570661,1.023.640.126
-Jorge Andrés Carvajal Ahumada, jacarvajala@sena.edu.co,3214419755,1.023.880.535
-Carlos Ricardo Segura Trujillo,crsegura@sena.edu.co,3222192155,1075253846
-Eduardo Martinez Vidal,ingemartinezvidal@gmail.com,3208812193,12196897
-Jairo Andrés Hernández Naranjo,andresh985@gmail.com,3015636733,80919650
-Huber Bermeo Roda,huberbermeor@misena.edu.co,3205375594,12198779
-Jorge Armando Arenas Perdomo,jaarenasp@sena.edu.co,3173640000,83229979
-Richard Camilo Saavedra Coneo,rcsaavedra@sena.edu.co,3506764164,14397755
+name,email,phone,id,id_city
+Lisseth Katherine Ramírez,lramireza@sena.edu.co,3506764164,1.098.675.788, Neiva - Huila
+Jorge Andrés Pérez Gamboa ,japerezg@sena.edu.co,3167570661,1.023.640.126, Neiva - Huila
+Jorge Andrés Carvajal Ahumada, jacarvajala@sena.edu.co,3214419755,1.023.880.535, Neiva - Huila
+Carlos Ricardo Segura Trujillo,crsegura@sena.edu.co,3222192155,1075253846, Neiva - Huila
+Eduardo Martinez Vidal,ingemartinezvidal@gmail.com,3208812193,12196897, Neiva - Huila
+Jairo Andrés Hernández Naranjo,andresh985@gmail.com,3015636733,80919650, Neiva - Huila
+Huber Bermeo Roda,huberbermeor@misena.edu.co,3205375594,12198779, Neiva - Huila
+Jorge Armando Arenas Perdomo,jaarenasp@sena.edu.co,3173640000,83229979, Neiva - Huila
+Richard Camilo Saavedra Coneo,rcsaavedra@sena.edu.co,3506764164,14397755, Neiva - Huila
